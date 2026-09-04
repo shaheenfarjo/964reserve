@@ -1,4 +1,4 @@
-import { Slider } from "@repo/design-system/components/ui/slider";
+import { Slider } from "@964reserve/design-system/components/ui/slider";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

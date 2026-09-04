@@ -68,17 +68,17 @@ Prisma Studio provides a visual interface for browsing and editing database reco
 All packages use the `@repo/<name>` convention:
 
 ```typescript
-import { database } from '@repo/database';
-import { auth } from '@repo/auth';
-import { stripe } from '@repo/payments';
+import { database } from '@964reserve/database';
+import { auth } from '@964reserve/auth';
+import { stripe } from '@964reserve/payments';
 ```
 
 Import from specific subpaths when needed:
 
 ```typescript
-import { analytics } from '@repo/analytics/server';
-import { upload } from '@repo/storage/client';
-import { log } from '@repo/observability/log';
+import { analytics } from '@964reserve/analytics/server';
+import { upload } from '@964reserve/storage/client';
+import { log } from '@964reserve/observability/log';
 ```
 
 ## Turborepo Pipeline

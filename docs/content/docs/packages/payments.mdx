@@ -17,7 +17,7 @@ Stripe is an optional integration. If `STRIPE_SECRET_KEY` is not set, the `strip
 You can use Stripe anywhere in your app by importing the `stripe` object like so:
 
 ```ts title="page.tsx {1,5}"
-import { stripe } from '@repo/payments';
+import { stripe } from '@964reserve/payments';
 
 // ...
 
@@ -39,9 +39,9 @@ Stripe Radar supports more [advanced anti-fraud features](https://docs.stripe.co
     Edit `apps/app/app/layout.tsx` and add `<Script src="https://js.stripe.com/v3/" />` after the opening `<html>` tag and before the opening `<body>` tag. You will also need to add `import Script from 'next/script'`
 
     ```tsx title="{5, 13}"
-    import '@repo/design-system/styles/globals.css';
-    import { DesignSystemProvider } from '@repo/design-system';
-    import { fonts } from '@repo/design-system/lib/fonts';
+    import '@964reserve/design-system/styles/globals.css';
+    import { DesignSystemProvider } from '@964reserve/design-system';
+    import { fonts } from '@964reserve/design-system/lib/fonts';
     import type { ReactNode } from 'react';
     import Script from 'next/script';
 

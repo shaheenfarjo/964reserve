@@ -26,7 +26,7 @@ Handles user authentication, organization management, and session handling.
 
 **Usage**:
 ```typescript
-import { database } from '@repo/database';
+import { database } from '@964reserve/database';
 const users = await database.user.findMany();
 ```
 
@@ -57,8 +57,8 @@ const users = await database.user.findMany();
 
 **Usage**:
 ```typescript
-import { resend } from '@repo/email';
-import { WelcomeEmail } from '@repo/email/templates/welcome';
+import { resend } from '@964reserve/email';
+import { WelcomeEmail } from '@964reserve/email/templates/welcome';
 
 await resend?.emails.send({
   from: 'hello@example.com',
@@ -117,7 +117,7 @@ bun run bump-ui
 
 **Usage**:
 ```typescript
-import { analytics } from '@repo/analytics/server';
+import { analytics } from '@964reserve/analytics/server';
 analytics?.capture({ event: 'user_signed_up', distinctId: userId });
 ```
 
@@ -175,7 +175,7 @@ if (decision.isDenied()) {
 
 **Usage**:
 ```typescript
-import { createMetadata } from '@repo/seo/metadata';
+import { createMetadata } from '@964reserve/seo/metadata';
 export const metadata = createMetadata({
   title: 'Page Title',
   description: 'Page description',

@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { blog, legal } from "@repo/cms";
+import { blog, legal } from "@964reserve/cms";
 import type { MetadataRoute } from "next";
 import { env } from "@/env";
 

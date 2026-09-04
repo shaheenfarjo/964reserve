@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./"),
-      "@repo": path.resolve(import.meta.dirname, "../../packages"),
+      "@964reserve": path.resolve(import.meta.dirname, "../../packages"),
     },
   },
 });

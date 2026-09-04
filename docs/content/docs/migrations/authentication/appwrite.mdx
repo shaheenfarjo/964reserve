@@ -345,7 +345,7 @@ export const SignUp = () => {
 Create a callback route to handle OAuth redirects:
 
 ```ts title="apps/app/app/api/auth/callback/route.ts"
-import { createAdminClient } from '@repo/auth/server';
+import { createAdminClient } from '@964reserve/auth/server';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
@@ -435,7 +435,7 @@ const { userId, orgId } = await auth();
 const user = await currentUser();
 
 // After (Appwrite)
-import { auth, currentUser } from '@repo/auth/server';
+import { auth, currentUser } from '@964reserve/auth/server';
 
 const { userId, orgId } = await auth();
 const user = await currentUser();
@@ -450,7 +450,7 @@ const { user } = useUser();
 
 // After (Appwrite)
 'use client';
-import { account } from '@repo/auth/client';
+import { account } from '@964reserve/auth/client';
 import { useEffect, useState } from 'react';
 import type { Models } from 'appwrite';
 
@@ -470,7 +470,7 @@ import { SignOutButton } from '@clerk/nextjs';
 
 // After (Appwrite)
 'use client';
-import { account } from '@repo/auth/client';
+import { account } from '@964reserve/auth/client';
 
 const handleSignOut = async () => {
   await account.deleteSession('current');
@@ -489,7 +489,7 @@ const handleSignOut = async () => {
 To add OAuth providers, configure them in your Appwrite Console under Auth → Settings, then use:
 
 ```ts
-import { account } from '@repo/auth/client';
+import { account } from '@964reserve/auth/client';
 import { OAuthProvider } from 'appwrite';
 
 account.createOAuth2Session(
@@ -502,7 +502,7 @@ account.createOAuth2Session(
 ### Magic URL Authentication
 
 ```ts
-import { account } from '@repo/auth/client';
+import { account } from '@964reserve/auth/client';
 import { ID } from 'appwrite';
 
 await account.createMagicURLToken(

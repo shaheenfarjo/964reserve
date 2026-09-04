@@ -171,7 +171,7 @@ npx shadcn@latest add [component] -c packages/design-system
 Create custom compound components following the composable pattern:
 
 ```typescript
-import { Banner, BannerContent, BannerTitle, BannerDescription } from '@repo/design-system/components/banner';
+import { Banner, BannerContent, BannerTitle, BannerDescription } from '@964reserve/design-system/components/banner';
 ```
 
 ## Extending Features

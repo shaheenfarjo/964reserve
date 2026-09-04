@@ -125,7 +125,7 @@ Collections are defined with typed attributes (string, integer, boolean, float, 
 You can create collections through the Appwrite Console, or programmatically using the server SDK. Here's an example of creating a `posts` collection:
 
 ```ts title="Example: Creating a collection"
-import { database, databaseId, ID, Permission, Role } from '@repo/database';
+import { database, databaseId, ID, Permission, Role } from '@964reserve/database';
 
 await database.createCollection(
   databaseId,
@@ -188,7 +188,7 @@ Here's how to perform basic CRUD operations with the Appwrite SDK:
 ### Create a document
 
 ```ts
-import { database, databaseId, ID } from '@repo/database';
+import { database, databaseId, ID } from '@964reserve/database';
 
 const post = await database.createDocument(
   databaseId,
@@ -206,7 +206,7 @@ const post = await database.createDocument(
 ### Read documents
 
 ```ts
-import { database, databaseId, Query } from '@repo/database';
+import { database, databaseId, Query } from '@964reserve/database';
 
 // Get a single document
 const post = await database.getDocument(
@@ -230,7 +230,7 @@ const posts = await database.listDocuments(
 ### Update a document
 
 ```ts
-import { database, databaseId } from '@repo/database';
+import { database, databaseId } from '@964reserve/database';
 
 const updated = await database.updateDocument(
   databaseId,
@@ -245,7 +245,7 @@ const updated = await database.updateDocument(
 ### Delete a document
 
 ```ts
-import { database, databaseId } from '@repo/database';
+import { database, databaseId } from '@964reserve/database';
 
 await database.deleteDocument(
   databaseId,
@@ -259,7 +259,7 @@ await database.deleteDocument(
 Appwrite uses a document-level permissions system instead of SQL's Row Level Security. You can set permissions when creating or updating documents:
 
 ```ts
-import { database, databaseId, ID, Permission, Role } from '@repo/database';
+import { database, databaseId, ID, Permission, Role } from '@964reserve/database';
 
 const post = await database.createDocument(
   databaseId,
@@ -292,14 +292,14 @@ Replace Prisma queries throughout your application with Appwrite SDK calls:
 
 ```tsx
 // Before (Prisma)
-import { database } from '@repo/database';
+import { database } from '@964reserve/database';
 const posts = await database.post.findMany({
   where: { authorId: userId },
   orderBy: { createdAt: 'desc' },
 });
 
 // After (Appwrite)
-import { database, databaseId, Query } from '@repo/database';
+import { database, databaseId, Query } from '@964reserve/database';
 const { documents: posts } = await database.listDocuments(
   databaseId,
   'posts',
@@ -318,7 +318,7 @@ const { documents: posts } = await database.listDocuments(
 Appwrite supports realtime subscriptions on the client side. You can listen for changes to documents:
 
 ```ts
-import { client } from '@repo/auth/client';
+import { client } from '@964reserve/auth/client';
 
 const unsubscribe = client.subscribe(
   `databases.${databaseId}.collections.posts.documents`,
@@ -334,7 +334,7 @@ const unsubscribe = client.subscribe(
 Appwrite supports relationships between collections. You can create one-to-one, one-to-many, and many-to-many relationships via the Console or SDK:
 
 ```ts
-import { database, databaseId } from '@repo/database';
+import { database, databaseId } from '@964reserve/database';
 
 await database.createRelationshipAttribute(
   databaseId,
@@ -352,7 +352,7 @@ await database.createRelationshipAttribute(
 For better query performance, create indexes on frequently queried attributes:
 
 ```ts
-import { database, databaseId } from '@repo/database';
+import { database, databaseId } from '@964reserve/database';
 
 await database.createIndex(
   databaseId,

@@ -1,6 +1,6 @@
-import { blog } from "@repo/cms";
-import { Button } from "@repo/design-system/components/ui/button";
-import type { Dictionary } from "@repo/internationalization";
+import { blog } from "@964reserve/cms";
+import { Button } from "@964reserve/design-system/components/ui/button";
+import type { Dictionary } from "@964reserve/internationalization";
 import { MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
 import { env } from "@/env";

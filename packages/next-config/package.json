@@ -1,5 +1,5 @@
 {
-  "name": "@repo/next-config",
+  "name": "@964reserve/next-config",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
+    "@964reserve/typescript-config": "workspace:*",
     "next": "16.3.3"
   },
   "dependencies": {

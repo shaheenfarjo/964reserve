@@ -103,10 +103,10 @@ export * from '@paddle/paddle-node-sdk';
 Update the webhook handler for Paddle:
 
 ```ts title="apps/api/app/webhooks/payments/route.ts"
-import { keys } from '@repo/payments/keys';
+import { keys } from '@964reserve/payments/keys';
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import { paddle } from '@repo/payments';
+import { paddle } from '@964reserve/payments';
 
 export const POST = async (request: Request) => {
   try {
@@ -192,7 +192,7 @@ Finally, open a checkout on your pricing page:
 ```tsx title="apps/web/app/pricing/page.tsx"
 'use client';
 
-import { usePaddle } from '@repo/payments/checkout';
+import { usePaddle } from '@964reserve/payments/checkout';
 
 const Pricing = () => {
   const paddle = usePaddle();

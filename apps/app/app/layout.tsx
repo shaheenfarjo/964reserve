@@ -1,9 +1,9 @@
 import { env } from "@/env";
 import "./styles.css";
-import { AnalyticsProvider } from "@repo/analytics/provider";
-import { DesignSystemProvider } from "@repo/design-system";
-import { fonts } from "@repo/design-system/lib/fonts";
-import { Toolbar } from "@repo/feature-flags/components/toolbar";
+import { AnalyticsProvider } from "@964reserve/analytics/provider";
+import { DesignSystemProvider } from "@964reserve/design-system";
+import { fonts } from "@964reserve/design-system/lib/fonts";
+import { Toolbar } from "@964reserve/feature-flags/components/toolbar";
 import type { ReactNode } from "react";
 
 interface RootLayoutProperties {

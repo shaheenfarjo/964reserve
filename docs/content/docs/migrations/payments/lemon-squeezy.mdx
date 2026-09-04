@@ -48,7 +48,7 @@ The API key should be a server-side environment variable (without the `NEXT_PUBL
 Initialize the payments client in the `packages/payments/index.ts` file with the new API key. Then, export the `lemonSqueezySetup` function from the file.
 
 ```ts title="packages/payments/index.ts"
-import { env } from '@repo/env';
+import { env } from '@964reserve/env';
 import { lemonSqueezySetup } from '@lemonsqueezy/lemonsqueezy.js';
 
 lemonSqueezySetup({
@@ -81,7 +81,7 @@ There's quite a lot you can do with Lemon Squeezy, so check out the following re
 Finally, use the new payments client in your app.
 
 ```tsx title="apps/app/app/(authenticated)/page.tsx"
-import { getStore } from '@repo/payments';
+import { getStore } from '@964reserve/payments';
 
 const Page = async () => {
   const store = await getStore(123456);

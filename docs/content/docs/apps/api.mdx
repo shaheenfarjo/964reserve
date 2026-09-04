@@ -43,7 +43,7 @@ The API app is useful when you need:
 Create a new route handler in `apps/api/app`. For example, to create a `/users` endpoint:
 
 ```ts title="apps/api/app/users/route.ts"
-import { database } from '@repo/database';
+import { database } from '@964reserve/database';
 
 export const GET = async () => {
   const users = await database.user.findMany();

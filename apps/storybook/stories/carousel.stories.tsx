@@ -4,7 +4,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@repo/design-system/components/ui/carousel";
+} from "@964reserve/design-system/components/ui/carousel";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

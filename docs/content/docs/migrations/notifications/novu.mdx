@@ -136,7 +136,7 @@ Update the wrapper in `apps/app/app/(authenticated)/components/notifications-pro
 ```tsx title="apps/app/app/(authenticated)/components/notifications-provider.tsx"
 'use client';
 
-import { NotificationsProvider as RawNotificationsProvider } from '@repo/notifications/components/provider';
+import { NotificationsProvider as RawNotificationsProvider } from '@964reserve/notifications/components/provider';
 import { useTheme } from 'next-themes';
 import type { ReactNode } from 'react';
 
@@ -167,7 +167,7 @@ export const NotificationsProvider = ({
 To trigger a notification from the server, use the Novu API:
 
 ```ts
-import { notifications } from '@repo/notifications';
+import { notifications } from '@964reserve/notifications';
 
 await notifications.trigger({
   workflowId: 'your-workflow-id',

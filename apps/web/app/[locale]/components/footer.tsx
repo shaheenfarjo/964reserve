@@ -1,5 +1,5 @@
-import { legal } from "@repo/cms";
-import { Status } from "@repo/observability/status";
+import { legal } from "@964reserve/cms";
+import { Status } from "@964reserve/observability/status";
 import Link from "next/link";
 import { env } from "@/env";
 

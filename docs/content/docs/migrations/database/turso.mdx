@@ -105,7 +105,7 @@ Open `packages/database/index.ts` and make the following changes:
 import "server-only";
 
 import { createClient } from "@libsql/client";
-import { env } from "@repo/env";
+import { env } from "@964reserve/env";
 
 const libsql = createClient({
   url: env.DATABASE_URL,
@@ -138,7 +138,7 @@ CREATE TABLE pages (
 Now wherever you would usually call Prisma, use the `libsql` client instead:
 
 ```ts title="packages/app/app/(authenticated)/page.tsx"
-import { database } from "@repo/database";
+import { database } from "@964reserve/database";
 
 type PageType = {
   id: number;
