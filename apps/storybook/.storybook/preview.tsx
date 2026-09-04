@@ -1,10 +1,10 @@
-import { Toaster } from "@repo/design-system/components/ui/sonner";
-import { TooltipProvider } from "@repo/design-system/components/ui/tooltip";
-import { ThemeProvider } from "@repo/design-system/providers/theme";
+import { Toaster } from "@964reserve/design-system/components/ui/sonner";
+import { TooltipProvider } from "@964reserve/design-system/components/ui/tooltip";
+import { ThemeProvider } from "@964reserve/design-system/providers/theme";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react";
 
-import "@repo/design-system/styles/globals.css";
+import "@964reserve/design-system/styles/globals.css";
 
 const preview: Preview = {
   parameters: {

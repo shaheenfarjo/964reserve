@@ -45,7 +45,7 @@ The internationalization package is configured through a `languine.json` file th
 Dictionaries are TypeScript files that export strongly-typed content for each supported language. The type system ensures consistency across translations:
 
 ```ts title="packages/internationalization/dictionaries/[locale].ts"
-import type { Dictionary } from '@repo/internationalization';
+import type { Dictionary } from '@964reserve/internationalization';
 
 const dictionary: Dictionary = {};
 
@@ -77,7 +77,7 @@ To use the internationalization package, you need to:
 You can find an example of a dictionary in the `web` package:
 
 ```tsx title="apps/web/app/page.tsx"
-import { getDictionary } from '@repo/internationalization';
+import { getDictionary } from '@964reserve/internationalization';
 
 type HomeProps = {
   params: Promise<{
@@ -105,7 +105,7 @@ This has already been configured for the `web` package, so you don't need to wor
 
 ```tsx title="apps/web/proxy.ts"
 import { createNEMO } from '@rescale/nemo';
-import { internationalizationMiddleware } from '@repo/internationalization';
+import { internationalizationMiddleware } from '@964reserve/internationalization';
 
 // The i18n middleware is composed into the middleware chain
 // alongside auth and security middleware using createNEMO:

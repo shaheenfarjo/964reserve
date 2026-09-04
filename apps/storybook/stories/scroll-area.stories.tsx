@@ -1,4 +1,4 @@
-import { ScrollArea } from "@repo/design-system/components/ui/scroll-area";
+import { ScrollArea } from "@964reserve/design-system/components/ui/scroll-area";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

@@ -373,7 +373,7 @@ Create helper functions to manage organizations in your application. Add these t
 
 ```ts title="packages/auth/organizations.ts"
 import 'server-only';
-import { database } from '@repo/database';
+import { database } from '@964reserve/database';
 import { createClient } from './server';
 
 export const createOrganization = async (name: string, userId: string) => {
@@ -435,7 +435,7 @@ export const inviteToOrganization = async (
 Create a callback route to handle authentication redirects:
 
 ```ts title="apps/app/app/api/auth/callback/route.ts"
-import { createClient } from '@repo/auth/server';
+import { createClient } from '@964reserve/auth/server';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -469,7 +469,7 @@ const { userId, orgId } = await auth();
 const user = await currentUser();
 
 // After (Supabase)
-import { auth, currentUser } from '@repo/auth/server';
+import { auth, currentUser } from '@964reserve/auth/server';
 
 const { userId, orgId } = await auth();
 const user = await currentUser();
@@ -484,7 +484,7 @@ const { user } = useUser();
 
 // After (Supabase)
 'use client';
-import { createClient } from '@repo/auth/client';
+import { createClient } from '@964reserve/auth/client';
 import { useEffect, useState } from 'react';
 
 const supabase = createClient();
@@ -510,7 +510,7 @@ import { SignOutButton } from '@clerk/nextjs';
 
 // After (Supabase)
 'use client';
-import { createClient } from '@repo/auth/client';
+import { createClient } from '@964reserve/auth/client';
 
 const handleSignOut = async () => {
   const supabase = createClient();

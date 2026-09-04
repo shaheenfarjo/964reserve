@@ -123,7 +123,7 @@ Create a storage bucket in the Appwrite Console:
 You can also create a bucket programmatically:
 
 ```ts title="Example: Creating a bucket"
-import { storage, Permission, Role } from '@repo/storage';
+import { storage, Permission, Role } from '@964reserve/storage';
 
 await storage.createBucket(
   'uploads',
@@ -146,7 +146,7 @@ await storage.createBucket(
 ### Upload a file (server-side)
 
 ```ts
-import { storage, bucketId, ID, InputFile } from '@repo/storage';
+import { storage, bucketId, ID, InputFile } from '@964reserve/storage';
 
 const file = await storage.createFile(
   bucketId,
@@ -158,7 +158,7 @@ const file = await storage.createFile(
 ### Upload a file (client-side)
 
 ```ts
-import { storage, ID } from '@repo/storage/client';
+import { storage, ID } from '@964reserve/storage/client';
 
 const bucketId = process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!;
 
@@ -172,7 +172,7 @@ const file = await storage.createFile(
 ### Download a file
 
 ```ts
-import { storage, bucketId } from '@repo/storage';
+import { storage, bucketId } from '@964reserve/storage';
 
 const fileData = await storage.getFileDownload(bucketId, 'file-id');
 ```
@@ -180,7 +180,7 @@ const fileData = await storage.getFileDownload(bucketId, 'file-id');
 ### Delete a file
 
 ```ts
-import { storage, bucketId } from '@repo/storage';
+import { storage, bucketId } from '@964reserve/storage';
 
 await storage.deleteFile(bucketId, 'file-id');
 ```
@@ -190,7 +190,7 @@ await storage.deleteFile(bucketId, 'file-id');
 Appwrite provides built-in image transformations through the preview endpoint:
 
 ```ts
-import { storage, bucketId } from '@repo/storage';
+import { storage, bucketId } from '@964reserve/storage';
 
 // Get a preview with transformations
 const preview = storage.getFilePreview(
@@ -206,7 +206,7 @@ const preview = storage.getFilePreview(
 ### Get file metadata
 
 ```ts
-import { storage, bucketId } from '@repo/storage';
+import { storage, bucketId } from '@964reserve/storage';
 
 const file = await storage.getFile(bucketId, 'file-id');
 
@@ -221,12 +221,12 @@ Replace Vercel Blob usage throughout your application:
 
 ```tsx
 // Before (Vercel Blob)
-import { put, del } from '@repo/storage';
+import { put, del } from '@964reserve/storage';
 const blob = await put('image.png', file, { access: 'public' });
 await del(blob.url);
 
 // After (Appwrite)
-import { storage, bucketId, ID, InputFile } from '@repo/storage';
+import { storage, bucketId, ID, InputFile } from '@964reserve/storage';
 const file = await storage.createFile(
   bucketId,
   ID.unique(),
@@ -240,7 +240,7 @@ await storage.deleteFile(bucketId, file.$id);
 Appwrite supports fine-grained file-level permissions. You can set permissions when creating files:
 
 ```ts
-import { storage, bucketId, ID, Permission, Role, InputFile } from '@repo/storage';
+import { storage, bucketId, ID, Permission, Role, InputFile } from '@964reserve/storage';
 
 const file = await storage.createFile(
   bucketId,

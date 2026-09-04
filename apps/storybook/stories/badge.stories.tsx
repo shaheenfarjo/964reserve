@@ -1,4 +1,4 @@
-import { Badge } from "@repo/design-system/components/ui/badge";
+import { Badge } from "@964reserve/design-system/components/ui/badge";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

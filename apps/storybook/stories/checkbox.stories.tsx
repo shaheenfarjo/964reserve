@@ -1,4 +1,4 @@
-import { Checkbox } from "@repo/design-system/components/ui/checkbox";
+import { Checkbox } from "@964reserve/design-system/components/ui/checkbox";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

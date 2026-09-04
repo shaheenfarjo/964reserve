@@ -64,7 +64,7 @@ export const ConvexClientProvider = ({ children }: { children: ReactNode }) => (
 Then wrap your app layout with the provider:
 
 ```tsx title="apps/app/app/layout.tsx"
-import { ConvexClientProvider } from '@repo/database/provider';
+import { ConvexClientProvider } from '@964reserve/database/provider';
 
 // ...
 
@@ -163,7 +163,7 @@ Convex uses React hooks for data fetching with automatic real-time updates. Upda
 'use client';
 
 import { useQuery, useMutation } from 'convex/react';
-import { api } from '@repo/convex/_generated/api';
+import { api } from '@964reserve/convex/_generated/api';
 
 export const PagesList = () => {
   const pages = useQuery(api.pages.list);
@@ -190,7 +190,7 @@ For server-side data fetching (e.g. in Server Components), use the Convex HTTP c
 
 ```tsx title="app/(authenticated)/page.tsx"
 import { ConvexHttpClient } from 'convex/browser';
-import { api } from '@repo/convex/_generated/api';
+import { api } from '@964reserve/convex/_generated/api';
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 

@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@repo/design-system/components/ui/dialog";
+} from "@964reserve/design-system/components/ui/dialog";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

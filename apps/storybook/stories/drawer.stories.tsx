@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@repo/design-system/components/ui/drawer";
+} from "@964reserve/design-system/components/ui/drawer";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

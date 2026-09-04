@@ -1,9 +1,9 @@
 "use server";
 
-import { resend } from "@repo/email";
-import { ContactTemplate } from "@repo/email/templates/contact";
-import { parseError } from "@repo/observability/error";
-import { createRateLimiter, slidingWindow } from "@repo/rate-limit";
+import { resend } from "@964reserve/email";
+import { ContactTemplate } from "@964reserve/email/templates/contact";
+import { parseError } from "@964reserve/observability/error";
+import { createRateLimiter, slidingWindow } from "@964reserve/rate-limit";
 import { headers } from "next/headers";
 import { env } from "@/env";
 

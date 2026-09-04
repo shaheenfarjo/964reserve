@@ -1,5 +1,5 @@
-import { analytics } from "@repo/analytics/server";
-import { auth } from "@repo/auth/server";
+import { analytics } from "@964reserve/analytics/server";
+import { auth } from "@964reserve/auth/server";
 import { flag } from "flags/next";
 
 export const createFlag = (key: string) =>

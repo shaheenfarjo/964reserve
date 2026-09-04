@@ -25,7 +25,7 @@ next-forge uses the Svix API in a stateless manner. The organization ID from the
 To send a webhook, simply use the `send` function from the `@repo/webhooks` package:
 
 ```tsx
-import { webhooks } from '@repo/webhooks';
+import { webhooks } from '@964reserve/webhooks';
 
 await webhooks.send('invoice.created', {
   data: {
@@ -41,7 +41,7 @@ Svix provides a pre-built [consumer application portal](https://docs.svix.com/ap
 To get access to the application portal, use the `getAppPortal` function from `@repo/webhooks` and use the returned URL in an `iframe` on your dashboard.
 
 ```tsx
-import { webhooks } from '@repo/webhooks';
+import { webhooks } from '@964reserve/webhooks';
 
 const { url } = await webhooks.getAppPortal();
 

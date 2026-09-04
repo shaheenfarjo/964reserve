@@ -48,7 +48,7 @@ Update the database connection code to use the new Prisma Postgres adapter:
 ```ts title="packages/database/index.ts {4,7}"
 import 'server-only';
 
-import { env } from '@repo/env';
+import { env } from '@964reserve/env';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { PrismaClient } from '@prisma/client';
 
@@ -126,7 +126,7 @@ import 'server-only';
 import { withPulse } from '@prisma/extension-pulse';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { PrismaClient } from '@prisma/client';
-import { env } from '@repo/env';
+import { env } from '@964reserve/env';
 
 export const database = new PrismaClient()
   .$extends(withAccelerate())

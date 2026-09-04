@@ -4,7 +4,7 @@ import {
   auth,
   clerkClient,
   type OrganizationMembership,
-} from "@repo/auth/server";
+} from "@964reserve/auth/server";
 
 const getName = (user: OrganizationMembership): string | undefined => {
   let name = user.publicUserData?.firstName;

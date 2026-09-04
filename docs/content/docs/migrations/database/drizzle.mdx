@@ -44,7 +44,7 @@ import 'server-only';
 
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
-import { env } from '@repo/env';
+import { env } from '@964reserve/env';
 
 const client = neon(env.DATABASE_URL);
 
@@ -57,7 +57,7 @@ Next we'll create a Drizzle configuration file, used by Drizzle Kit and contains
 
 ```ts title="packages/database/drizzle.config.ts"
 import { defineConfig } from 'drizzle-kit';
-import { env } from '@repo/env';
+import { env } from '@964reserve/env';
 
 export default defineConfig({
   schema: './schema.ts',
@@ -97,8 +97,8 @@ Now you can update your queries to use the Drizzle ORM.
 For example, here's how we can update the `page` query in `app/(authenticated)/page.tsx`:
 
 ```ts title="apps/app/app/(authenticated)/page.tsx {2, 7}"
-import { database } from '@repo/database';
-import { page } from '@repo/database/schema';
+import { database } from '@964reserve/database';
+import { page } from '@964reserve/database/schema';
 
 // ...
 

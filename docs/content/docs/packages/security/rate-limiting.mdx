@@ -26,8 +26,8 @@ You can then paste these environment variables each of the [environment variable
 You can add rate limiting to your API routes by using the `createRateLimiter` function. For example, to limit the number of AI requests to 10 per 10 seconds per IP address, you can do something like this:
 
 ```ts title="apps/app/api/chat/route.ts"
-import { currentUser } from '@repo/auth/server';
-import { createRateLimiter, slidingWindow } from '@repo/rate-limit';
+import { currentUser } from '@964reserve/auth/server';
+import { createRateLimiter, slidingWindow } from '@964reserve/rate-limit';
 
 export const GET = async (request: NextRequest) => {
   const user = await currentUser();
@@ -72,7 +72,7 @@ export const ratelimit = new Ratelimit({
 You can use rate limiting in any API Route by importing it from the `rate-limit` package. For example:
 
 ```typescript title="apps/api/app/ratelimit/upstash/route.ts {7}"
-import { ratelimit } from "@repo/rate-limit";
+import { ratelimit } from "@964reserve/rate-limit";
 
 export const GET = async (request: NextRequest) => {
   // Use any identifier like username, API key, or IP address

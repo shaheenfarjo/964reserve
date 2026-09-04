@@ -2,7 +2,7 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@repo/design-system/components/ui/resizable";
+} from "@964reserve/design-system/components/ui/resizable";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**

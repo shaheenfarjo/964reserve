@@ -71,8 +71,8 @@ export { NextSSRPlugin as StorageSSRPlugin } from '@uploadthing/react/next-ssr-p
 Create a new file in your app's `lib` directory to define the file router. This file will be used to define the file routes for your app, using your [Auth](/docs/packages/authentication) package to get the current user.
 
 ```ts title="apps/app/app/lib/upload.ts"
-import { currentUser } from '@repo/auth/server';
-import { type FileRouter, UploadError, storage } from '@repo/storage';
+import { currentUser } from '@964reserve/auth/server';
+import { type FileRouter, UploadError, storage } from '@964reserve/storage';
   
 export const router: FileRouter = {
   imageUploader: storage({
@@ -100,7 +100,7 @@ Create a new route handler in your app's `api` directory to handle the file rout
 
 ```ts title="apps/app/app/api/upload/route.ts"
 import { router } from '@/app/lib/upload';
-import { createRouteHandler } from '@repo/storage';
+import { createRouteHandler } from '@964reserve/storage';
 
 export const { GET, POST } = createRouteHandler({ router });
 ```
@@ -110,11 +110,11 @@ export const { GET, POST } = createRouteHandler({ router });
 Update your root layout to include the `StorageSSRPlugin`. This will add SSR hydration and avoid a loading state on your upload button.
 
 ```tsx title="apps/app/app/layout.tsx {4,5,7,16}"
-import '@repo/design-system/styles/globals.css';
-import { DesignSystemProvider } from '@repo/design-system';
-import { fonts } from '@repo/design-system/lib/fonts';
-import { extractRouterConfig } from '@repo/storage';
-import { StorageSSRPlugin } from '@repo/storage/ssr';
+import '@964reserve/design-system/styles/globals.css';
+import { DesignSystemProvider } from '@964reserve/design-system';
+import { fonts } from '@964reserve/design-system/lib/fonts';
+import { extractRouterConfig } from '@964reserve/storage';
+import { StorageSSRPlugin } from '@964reserve/storage/ssr';
 import type { ReactNode } from 'react';
 import { router } from './lib/upload';
 
@@ -151,7 +151,7 @@ Create a new component for your upload button. This will use the `generateUpload
 'use client';
 
 import type { router } from '@/app/lib/upload';
-import { generateUploadButton } from '@repo/storage/client';
+import { generateUploadButton } from '@964reserve/storage/client';
 import { toast } from 'sonner';
 
 const UploadButton = generateUploadButton<typeof router>();

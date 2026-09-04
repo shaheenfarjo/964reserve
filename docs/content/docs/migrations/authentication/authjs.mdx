@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => children;
 In your `app` application, create an auth route handler file with the following content:
 
 ```tsx title="apps/app/api/auth/[...nextauth]/route.ts"
-import { handlers } from "@repo/auth"
+import { handlers } from "@964reserve/auth"
 
 export const { GET, POST } = handlers;
 ```

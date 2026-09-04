@@ -17,7 +17,7 @@ Resend is an optional integration. If `RESEND_TOKEN` is not set, the `resend` ex
 To send an email, you can use the `resend` object, which is imported from the `@repo/email` package:
 
 ```tsx title="apps/web/app/contact/actions/contact.tsx"
-import { resend } from '@repo/email';
+import { resend } from '@964reserve/email';
 
 await resend.emails.send({
   from: 'sender@acme.com',
@@ -37,8 +37,8 @@ The `email` package is separated from the app folder for two reasons:
 Resend and React Email play nicely together. For example, here's how you can send a transactional email using a React email template:
 
 ```tsx title="apps/web/app/contact/actions/contact.tsx"
-import { resend } from '@repo/email';
-import { ContactTemplate } from '@repo/email/templates/contact';
+import { resend } from '@964reserve/email';
+import { ContactTemplate } from '@964reserve/email/templates/contact';
 
 await resend.emails.send({
   from: 'sender@acme.com',
