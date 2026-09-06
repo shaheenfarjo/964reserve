@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { blog } from "@964reserve/cms";
 import { Body } from "@964reserve/cms/components/body";
 import { CodeBlock } from "@964reserve/cms/components/code-block";
@@ -7,6 +6,7 @@ import { Image } from "@964reserve/cms/components/image";
 import { TableOfContents } from "@964reserve/cms/components/toc";
 import { JsonLd } from "@964reserve/seo/json-ld";
 import { createMetadata } from "@964reserve/seo/metadata";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";

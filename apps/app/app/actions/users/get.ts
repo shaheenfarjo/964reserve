@@ -1,22 +1,7 @@
 "use server";
 
-import {
-  auth,
-  clerkClient,
-  type OrganizationMembership,
-} from "@964reserve/auth/server";
-
-const getName = (user: OrganizationMembership): string | undefined => {
-  let name = user.publicUserData?.firstName;
-
-  if (name && user.publicUserData?.lastName) {
-    name = `${name} ${user.publicUserData.lastName}`;
-  } else if (!name) {
-    name = user.publicUserData?.identifier;
-  }
-
-  return name;
-};
+import { auth } from "@964reserve/auth/server";
+import { database } from "@964reserve/database";
 
 const colors = [
   "var(--color-red-500)",
@@ -42,7 +27,7 @@ export const getUsers = async (
   userIds: string[]
 ): Promise<
   | {
-      data: Liveblocks["UserMeta"]["info"][];
+      data: unknown[];
     }
   | {
       error: unknown;
@@ -55,22 +40,21 @@ export const getUsers = async (
       throw new Error("Not logged in");
     }
 
-    const clerk = await clerkClient();
+    const { data: users } = await database.auth.admin.listUsers();
 
-    const members = await clerk.organizations.getOrganizationMembershipList({
-      organizationId: orgId,
-      limit: 100,
-    });
+    // We are mocking a fallback in case the service role key is not used
+    // and admin API fails.
+    const fetchedUsers = users?.users || [];
 
-    const data: Liveblocks["UserMeta"]["info"][] = members.data
+    const data: unknown[] = fetchedUsers
       .filter(
         (user) =>
-          user.publicUserData?.userId &&
-          userIds.includes(user.publicUserData.userId)
+          user.id &&
+          userIds.includes(user.id)
       )
       .map((user) => ({
-        name: getName(user) ?? "Unknown user",
-        picture: user.publicUserData?.imageUrl ?? "",
+        name: user.email ?? "Unknown user",
+        picture: user.user_metadata?.avatar_url ?? "",
         color: colors[Math.floor(Math.random() * colors.length)],
       }));
 
