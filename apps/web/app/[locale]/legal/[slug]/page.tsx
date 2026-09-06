@@ -1,9 +1,9 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { legal } from "@964reserve/cms";
 import { Body } from "@964reserve/cms/components/body";
 import { Feed } from "@964reserve/cms/components/feed";
 import { TableOfContents } from "@964reserve/cms/components/toc";
 import { createMetadata } from "@964reserve/seo/metadata";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";

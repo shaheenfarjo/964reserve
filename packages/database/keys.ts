@@ -5,9 +5,14 @@ export const keys = () =>
   createEnv({
     skipValidation: process.env.SKIP_ENV_VALIDATION === "true",
     server: {
-      DATABASE_URL: z.url(),
+      SUPABASE_URL: z.string().url(),
+      SUPABASE_ANON_KEY: z.string().min(1),
     },
     runtimeEnv: {
-      DATABASE_URL: process.env.DATABASE_URL,
+      SUPABASE_URL:
+        process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL,
+      SUPABASE_ANON_KEY:
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+        process.env.SUPABASE_ANON_KEY,
     },
   });

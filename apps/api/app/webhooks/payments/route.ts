@@ -1,22 +1,20 @@
 import { analytics } from "@964reserve/analytics/server";
-import { clerkClient } from "@964reserve/auth/server";
 import { parseError } from "@964reserve/observability/error";
 import { log } from "@964reserve/observability/log";
 import type { Stripe } from "@964reserve/payments";
 import { stripe } from "@964reserve/payments";
+import { database } from "@964reserve/database";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { env } from "@/env";
 
 const getUserFromCustomerId = async (customerId: string) => {
-  const clerk = await clerkClient();
-  const users = await clerk.users.getUserList();
+  const { data: usersResponse } = await database.auth.admin.listUsers();
+  const fetchedUsers = usersResponse?.users || [];
 
-  const user = users.data.find(
-    (currentUser) => currentUser.privateMetadata.stripeCustomerId === customerId
+  return fetchedUsers.find(
+    (user) => user.user_metadata?.stripe_customer_id === customerId
   );
-
-  return user;
 };
 
 const handleCheckoutSessionCompleted = async (

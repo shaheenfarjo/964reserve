@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 const App = async () => {
-  const pages = await database.page.findMany();
+  const { data: pages } = await database.from("Page").select("*");
   const { orgId } = await auth();
 
   if (!orgId) {
@@ -42,7 +42,7 @@ const App = async () => {
       </Header>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-          {pages.map((page) => (
+          {(pages || []).map((page) => (
             <div className="aspect-video rounded-xl bg-muted/50" key={page.id}>
               {page.name}
             </div>
