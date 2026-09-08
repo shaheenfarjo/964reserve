@@ -1,13 +1,11 @@
 import "server-only";
-import Stripe from "stripe";
 import { keys } from "./keys";
+import { WaylProvider } from "./wayl";
 
-const { STRIPE_SECRET_KEY } = keys();
+export * from "./provider";
 
-export const stripe = STRIPE_SECRET_KEY
-  ? new Stripe(STRIPE_SECRET_KEY, {
-      apiVersion: "2026-02-25.clover",
-    })
+const { WAYL_API_TOKEN, WAYL_WEBHOOK_SECRET } = keys();
+
+export const payments = WAYL_API_TOKEN
+  ? new WaylProvider(WAYL_API_TOKEN, WAYL_WEBHOOK_SECRET)
   : undefined;
-
-export type { Stripe } from "stripe";
