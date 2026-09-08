@@ -1,9 +1,8 @@
 import { analytics } from "@964reserve/analytics/server";
+import { database } from "@964reserve/database";
 import { parseError } from "@964reserve/observability/error";
 import { log } from "@964reserve/observability/log";
-import type { Stripe } from "@964reserve/payments";
-import { stripe } from "@964reserve/payments";
-import { database } from "@964reserve/database";
+import { payments } from "@964reserve/payments";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { env } from "@/env";
@@ -13,19 +12,17 @@ const getUserFromCustomerId = async (customerId: string) => {
   const fetchedUsers = usersResponse?.users || [];
 
   return fetchedUsers.find(
-    (user) => user.user_metadata?.stripe_customer_id === customerId
+    (user) => user.user_metadata?.wayl_customer_id === customerId
   );
 };
 
-const handleCheckoutSessionCompleted = async (
-  data: Stripe.Checkout.Session
-) => {
-  if (!data.customer) {
+const handleOrderComplete = async (data: Record<string, unknown>) => {
+  const customer = data.customer as Record<string, unknown> | undefined;
+  if (!customer?.id || typeof customer.id !== "string") {
     return;
   }
 
-  const customerId =
-    typeof data.customer === "string" ? data.customer : data.customer.id;
+  const customerId = customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -33,20 +30,18 @@ const handleCheckoutSessionCompleted = async (
   }
 
   analytics?.capture({
-    event: "User Subscribed",
+    event: "Payment Complete",
     distinctId: user.id,
   });
 };
 
-const handleSubscriptionScheduleCanceled = async (
-  data: Stripe.SubscriptionSchedule
-) => {
-  if (!data.customer) {
+const handleOrderCancelled = async (data: Record<string, unknown>) => {
+  const customer = data.customer as Record<string, unknown> | undefined;
+  if (!customer?.id || typeof customer.id !== "string") {
     return;
   }
 
-  const customerId =
-    typeof data.customer === "string" ? data.customer : data.customer.id;
+  const customerId = customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -54,42 +49,43 @@ const handleSubscriptionScheduleCanceled = async (
   }
 
   analytics?.capture({
-    event: "User Unsubscribed",
+    event: "Payment Cancelled",
     distinctId: user.id,
   });
 };
 
 export const POST = async (request: Request): Promise<Response> => {
-  if (!(stripe && env.STRIPE_WEBHOOK_SECRET)) {
+  if (!(payments && env.WAYL_WEBHOOK_SECRET)) {
     return NextResponse.json({ message: "Not configured", ok: false });
   }
 
   try {
     const body = await request.text();
     const headerPayload = await headers();
-    const signature = headerPayload.get("stripe-signature");
+    const signature = headerPayload.get("x-wayl-signature-256");
 
     if (!signature) {
-      throw new Error("missing stripe-signature header");
+      throw new Error("missing x-wayl-signature-256 header");
     }
 
-    const event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      env.STRIPE_WEBHOOK_SECRET
-    );
+    if (!payments.verifyWebhook(body, signature)) {
+      throw new Error("invalid webhook signature");
+    }
 
-    switch (event.type) {
-      case "checkout.session.completed": {
-        await handleCheckoutSessionCompleted(event.data.object);
+    const event = JSON.parse(body);
+
+    switch (event.event) {
+      case "order.complete": {
+        await handleOrderComplete(event);
         break;
       }
-      case "subscription_schedule.canceled": {
-        await handleSubscriptionScheduleCanceled(event.data.object);
+      case "order.cancelled":
+      case "order.rejected": {
+        await handleOrderCancelled(event);
         break;
       }
       default: {
-        log.warn(`Unhandled event type ${event.type}`);
+        log.warn(`Unhandled event type ${event.event as string}`);
       }
     }
 
