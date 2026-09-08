@@ -47,11 +47,7 @@ export const getUsers = async (
     const fetchedUsers = users?.users || [];
 
     const data: unknown[] = fetchedUsers
-      .filter(
-        (user) =>
-          user.id &&
-          userIds.includes(user.id)
-      )
+      .filter((user) => user.id && userIds.includes(user.id))
       .map((user) => ({
         name: user.email ?? "Unknown user",
         picture: user.user_metadata?.avatar_url ?? "",
