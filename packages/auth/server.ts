@@ -1,12 +1,13 @@
-import "server-only";
-
+import type { Database } from "@964reserve/database/types";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export const createClient = async () => {
   const cookieStore = await cookies();
-  return createServerClient(
+  return createServerClient<Database>(
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
@@ -15,9 +16,9 @@ export const createClient = async () => {
         },
         setAll(cookiesToSet) {
           try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
+            for (const { name, value, options } of cookiesToSet) {
+              cookieStore.set(name, value, options);
+            }
           } catch {
             // Ignore error
           }
@@ -25,26 +26,6 @@ export const createClient = async () => {
       },
     }
   );
-};
-
-export interface OrganizationMembership {
-  id: string;
-  publicUserData?: {
-    firstName?: string;
-    lastName?: string;
-    identifier?: string;
-  };
-}
-
-export const auth = async () => {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-
-  return {
-    userId: data.user?.id,
-    orgId: data.user?.user_metadata?.orgId ?? "mock-org-id",
-    redirectToSignIn: () => {},
-  };
 };
 
 export const currentUser = async () => {
@@ -56,12 +37,18 @@ export const currentUser = async () => {
   }
 
   return {
-    id: data.user.id,
-    fullName: data.user.user_metadata?.full_name,
-    imageUrl: data.user.user_metadata?.avatar_url,
-    emailAddresses: [{ emailAddress: data.user.email }],
-    privateMetadata: {
-      stripeCustomerId: data.user.user_metadata?.stripe_customer_id,
-    },
+    ...data.user,
+  };
+};
+
+export const auth = async () => {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+
+  return {
+    userId: data.user?.id,
+    orgId: data.user?.user_metadata?.orgId ?? "mock-org-id",
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    redirectToSignIn: () => {},
   };
 };
